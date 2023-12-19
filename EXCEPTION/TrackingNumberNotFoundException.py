@@ -2,24 +2,34 @@ class TrackingNumberNotFoundException(Exception):
     def __init__(self,message="Tracking number not found"):
         self.message=message
         super().__init__(self.message)
+class BankAccount:
+    def __init__(self,account_number,balance):
+        self.AccountNumber=account_number
+        self.Balance=balance
 
-class User:
-    def __init__(self,user_id,name,email,password,contact_number,address):
-        self.UserID=user_id
-        self.Name=name
-        self.Email=email
-        self.Password=password
-        self.ContactNumber=contact_number
-        self.Address=address
+    def withdraw(self,amount,tracking_number):
+        if tracking_number not in [1, 2, 3]:
+            raise TrackingNumberNotFoundException()
 
-def withdraw_amount(user,amount,target_email):
-    try:
-        if user.Email!=target_email:
-            raise TrackingNumberNotFoundException("Withdrawal not allowed: Different email address")
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-    else:
-        print("Withdrawal successful")
-user1 = User(1,"jeevan","jeevan@email.com","password1","1234567890","Main St")
-withdraw_amount(user1,50,"jeevan@email.com")
-withdraw_amount(user1,50,"different@example.com")
+    def transfer(self,amount,tracking_number,recipient_account):
+        if tracking_number not in [1, 2, 3]:
+            raise TrackingNumberNotFoundException()
+class BankException:
+    def raise_exception(self):
+        try:
+            account=BankAccount(123456, 1000.0)
+            withdrawal_tracking_number=int(input("Enter withdrawal tracking number: "))
+            account.withdraw(100.0,withdrawal_tracking_number)
+            print("Withdrawal successful.")
+        except TrackingNumberNotFoundException:
+            print("Tracking number not found. Withdrawal failed.")
+        try:
+            transfer_tracking_number=int(input("Enter transfer tracking number: "))
+            recipient_account=BankAccount(654321,500.0)
+            account.transfer(200.0,transfer_tracking_number,recipient_account)
+            print("Transfer successful.")
+        except TrackingNumberNotFoundException:
+            print("Tracking number not found. Transfer failed.")
+
+obj8=BankException()
+obj8.raise_exception()

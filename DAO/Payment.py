@@ -18,7 +18,7 @@ class Payment(DbConnection):
 
         insert_str='''
             INSERT INTO Payment (
-                PaymentId, CourierId, LocationId, Amount, PaymentDate
+                PaymentId,CourierId,LocationId,Amount,PaymentDate
             ) VALUES (%s, %s, %s, %s, %s)
         '''
 

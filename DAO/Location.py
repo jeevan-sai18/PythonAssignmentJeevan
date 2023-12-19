@@ -55,6 +55,7 @@ class Location(DbConnection):
         self.conn.commit()
         print('Record updated successfully..')
         self.close()
+        return True
 
     def delete(self):
         locationId=int(input('Enter the LocationId to be deleted:'))

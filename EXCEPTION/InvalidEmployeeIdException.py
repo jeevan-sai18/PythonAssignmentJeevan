@@ -29,4 +29,5 @@ class EmployeeException:
             print(f"Employee found: {found_employee.Name}")
         except InvalidEmployeeIdException:
             print("Invalid employee ID. Employee not found.")
-
+obj8=EmployeeException()
+obj8.RaiseException()

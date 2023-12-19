@@ -1,80 +1,67 @@
-# I can insert all values through main function by creating object for ENTITY
+from DAO.Courier import Courier
+from DAO.CourierCompany import CourierCompany
+from DAO.CourierService import CourierService
+from DAO.Employee import Employee
+from DAO.Location import Location
+from DAO.Payment import Payment
+from DAO.User import User
 
-# Now I retrieve Variables and values
+def main():
+    while True:
+        print("Select an option:")
+        print("1. Courier")
+        print("2. Courier Company")
+        print("3. Courier Service")
+        print("4. Employee")
+        print("5. Location")
+        print("6. Payment")
+        print("7. User")
+        print("8. Exit")
 
-from DAO.Courier import *
-obj1=Courier()
-obj1.getter()
-#obj1.setter()
-#obj1.update()
-#obj1.delete()
-print("............................")
+        choice = input("Enter your choice: ")
 
-from DAO.CourierCompany import *
-obj2=CourierCompany()
-obj2.getter()
-#obj2.setter()
-#obj2.update()
-#obj2.delete()
+        if choice == '1':
+            obj = Courier()
+        elif choice == '2':
+            obj = CourierCompany()
+        elif choice == '3':
+            obj = CourierService()
+        elif choice == '4':
+            obj = Employee()
+        elif choice == '5':
+            obj = Location()
+        elif choice == '6':
+            obj = Payment()
+        elif choice == '7':
+            obj = User()
 
-print(".................................")
+        elif choice == '8':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+            continue
 
-from DAO.CourierService import *
-obj3=CourierService()
-obj3.getter()
-#obj3.setter()
-#obj3.update()
-#obj3.delete()
+        obj.getter()
+        print("............................")
+        operation_choice = input("Do you want to perform additional operations? (Y/N): ").upper()
+        if operation_choice != 'Y':
+            break
 
-print(".....................................")
+        print("Select an operation:")
+        print("1. Setter")
+        print("2. Update")
+        print("3. Delete")
+        operation = input("Enter your operation choice: ")
 
-from DAO.Employee import *
+        if operation == '1':
+            obj.setter()
+        elif operation == '2':
+            obj.update()
+        elif operation == '3':
+            obj.delete()
+        else:
+            print("Invalid operation choice. Returning to main menu.")
 
-obj4=Employee()
-obj4.getter()
-#obj4.setter()
-#obj4.update()
-#obj4.delete()
-
-print(".......................")
-
-from DAO.Location import *
-
-obj5=Location()
-obj5.getter()
-#obj5.setter()
-#obj5.update()
-#obj5.delete()
-
-print(".........................")
-
-from DAO.Payment import *
-
-obj6=Payment()
-obj6.getter()
-#obj6.setter()
-#obj6.update()
-#obj6.delete()
-
-print("...........................")
-
-from DAO.User import *
-
-obj7=User()
-obj7.getter()
-#obj7.setter()
-#obj7.update()
-#obj7.delete()
-
-print("..............................")
-
-
-from EXCEPTION.InvalidEmployeeIdException import *
-
-obj8=EmployeeException()
-obj8.RaiseException()
-print(".........................")
-
-from EXCEPTION.TrackingNumberNotFoundException import *
-
-withdraw_amount(user1,50,"jeevan@email.com")
+if __name__ == "__main__":
+    main()
